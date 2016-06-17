@@ -13,7 +13,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-var (
+var ( 
 	db      = os.Getenv("POSTGRES_DB")
 	db_user = os.Getenv("POSTGRES_USER")
 	db_pwd  = os.Getenv("POSTGRES_PASSWORD")
@@ -78,6 +78,7 @@ func postdata(w http.ResponseWriter, r *http.Request) {
 				log.Println("----- Input ", like)
 				if like.Count >= 0 {
 					db, err = dbConnection()
+					defer db.Close()
 					if err == nil {
 						_, err = db.Query(fmt.Sprintf("update tbl_Counter set likecount = %d;", like.Count))
 					}
@@ -123,6 +124,7 @@ func dbConnection() (db *sql.DB, err error) {
 	connStr := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable", db_user, db_pwd, db_host, db_port, db)
 	fmt.Println(connStr)
 	db, err = sql.Open("postgres", connStr)
+		
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -132,6 +134,7 @@ func dbConnection() (db *sql.DB, err error) {
 func setupDB() error {
 	// Set DB
 	db, err := dbConnection()
+	defer db.Close()
 	if err == nil {
 		_, err = db.Query("CREATE TABLE IF NOT EXISTS tbl_Counter (likecount bigint)")
 		if err == nil {
