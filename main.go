@@ -14,17 +14,6 @@ import (
 )
 
 var (
-	//	SERVICE_NAME=pgdb
-	//NODE_TYPE=seed
-	//CONTAINER_DATA_PATH=/var/lib/postgressql/data
-	//POSTGRES_USER=postgres
-	//SEED_PORT=4001
-	//POSTGRES_DB=postgresDB
-	//HOST_PHPSERVICE=http://testenv--testproject--phpservice--81cd13.prd.shipped-cisco.com
-	//POSTGRES_PASSWORD=postgres
-	//SEED_HOST=testenv--testproject--pgdb--d37120-0.service.consul
-	//CONNECTION_STRING_TEMPLATE={{.POSTGRES_USER}}:{{.POSTGRES_PASSWORD}}@{{.HostPort}}/{{.POSTGRES_DB}}
-	//HOST_EXPR11=http://testenv--testproject--expr11--8a2785.prd.shipped-cisco.com
 	db      = os.Getenv("POSTGRES_DB")
 	db_user = os.Getenv("POSTGRES_USER")
 	db_pwd  = os.Getenv("POSTGRES_PASSWORD")
