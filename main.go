@@ -44,7 +44,7 @@ type Response struct {
 
 func welcome(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprintln(w, "Welcome to postgres sample, Datapoints available: \n /data[GET] \n /data[POST]")
+	fmt.Fprintln(w, "Some New Changes. Welcome to postgres sample, Datapoints available: \n /data[GET] \n /data[POST]")
 }
 
 func getdata(w http.ResponseWriter, r *http.Request) {
